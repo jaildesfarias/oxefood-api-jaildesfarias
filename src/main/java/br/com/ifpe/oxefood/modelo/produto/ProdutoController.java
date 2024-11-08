@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.oxefood.modelo.produto.Produto;
-import br.com.ifpe.oxefood.modelo.produto.ProdutoService; 
-import br.com.ifpe.oxefood.api.produto.ProdutoRequest;
+import br.com.ifpe.oxefood.modelo.produto.Cliente;
+import br.com.ifpe.oxefood.modelo.produto.ClienteService;
+import br.com.ifpe.oxefood.api.produto.ClienteRequest;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -24,12 +24,10 @@ public class ProdutoController {
    @PostMapping
    public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
 
+       // Cria um objeto Cliente usando o método build() de ClienteRequest
+       Produto produto = ProdutoService.save(request.build());
        
-       Produto produto = produtoService.save(request.build());
-       
-      
-       return new ResponseEntity<>( produto, HttpStatus.CREATED);
+       // Retorna uma resposta HTTP 201 Created com o objeto Cliente criado
+       return new ResponseEntity<>(produto, HttpStatus.CREATED);
    }
 }
-
-

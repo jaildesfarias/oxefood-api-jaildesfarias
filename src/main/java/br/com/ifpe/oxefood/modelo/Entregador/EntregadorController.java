@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.oxefood.modelo.entregador.Entregador;
-import br.com.ifpe.oxefood.modelo.entregador.EntregadorService; 
-import br.com.ifpe.oxefood.api.entregador.EntregadorRequest;
+import br.com.ifpe.oxefood.modelo.entregador.Cliente;
+import br.com.ifpe.oxefood.modelo.entregador.ClienteService;
+import br.com.ifpe.oxefood.api.entregador.ClienteRequest;
 
 @RestController
 @RequestMapping("/api/entregador")
@@ -24,10 +24,12 @@ public class EntregadorController {
    @PostMapping
    public ResponseEntity<Entregador> save(@RequestBody EntregadorRequest request) {
 
-
-       Entregador entregador = entregadorService.save(request.build());
+    
+       Entregador entregador = EntregadorService.save(request.build());
        
-       return new ResponseEntity<Entregador>(entregador, HttpStatus.CREATED);
+       return new ResponseEntity<>(entregador, HttpStatus.CREATED);
    }
 }
+
+
 
