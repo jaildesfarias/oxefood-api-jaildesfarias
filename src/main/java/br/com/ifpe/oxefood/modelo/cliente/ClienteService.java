@@ -1,8 +1,7 @@
 package br.com.ifpe.oxefood.modelo.cliente;
-import jakarta.transaction.Transactional;
-import jakarta.transaction.Transactional;
 
 
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

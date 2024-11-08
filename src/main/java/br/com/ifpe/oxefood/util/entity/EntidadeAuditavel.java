@@ -1,23 +1,46 @@
 package br.com.ifpe.oxefood.util.entity;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import lombok.EqualsAndHashCode;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class EntidadeAuditavel extends EntidadeNegocio {
-    
-    private Long versao;
+  
+   @JsonIgnore
+   @Version
+   private Long versao;
 
-    private LocalDate dataCriacao;
+   @JsonIgnore
+   @CreatedDate
+   private LocalDate dataCriacao;
 
-    private LocalDate dataUltimaModificacao;
+   @JsonIgnore
+   @LastModifiedDate
+   private LocalDate dataUltimaModificacao;
 
-    private Long criadoPor; // Id do usuário que o criou
+   @JsonIgnore
+   @Column
+   private Long criadoPor; // Id do usuário que o criou
 
-    private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
+   @JsonIgnore
+   @Column
+   private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
 
 }
 
+ 
