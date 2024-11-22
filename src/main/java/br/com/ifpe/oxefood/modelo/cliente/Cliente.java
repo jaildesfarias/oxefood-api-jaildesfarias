@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLRestriction;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -27,6 +30,7 @@ public class Cliente extends EntidadeAuditavel  {
    private String nome;
 
    @Column
+     @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
    @Column

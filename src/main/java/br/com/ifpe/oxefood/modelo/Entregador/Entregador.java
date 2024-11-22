@@ -33,10 +33,11 @@ public class Entregador extends EntidadeAuditavel  {
    @Column
    private String rg;
 
-   @Column
-   @JsonFormat(pattern = "dd/MM/yyyy")
+  
+   
 
    @Column
+   @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
    @Column
@@ -47,9 +48,6 @@ public class Entregador extends EntidadeAuditavel  {
 
    @Column
    private Integer qtEntregasRealizadas;
-
-   @Column
-   private Double foneCelular;
 
    @Column
    private String valorFrete;

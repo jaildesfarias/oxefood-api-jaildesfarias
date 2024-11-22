@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.oxefood.modelo.produto.Produto;
-import br.com.ifpe.oxefood.modelo.produto.ProdutoService; 
-import br.com.ifpe.oxefood.api.produto.ProdutoRequest;
+import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -19,16 +18,13 @@ import br.com.ifpe.oxefood.api.produto.ProdutoRequest;
 public class ProdutoController {
 
    @Autowired
-   private ProdutoService produtoService;
+   private ProdutoService produto Service;
 
    @PostMapping
    public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
 
-       
-       Produto produto = produtoService.save(request.build());
-       
-      
-       return new ResponseEntity<>( produto, HttpStatus.CREATED);
+       Produto produto = ProdutoService.save(request.build());
+       return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
    }
 }
 

@@ -1,4 +1,4 @@
-package br.com.ifpe.oxefood.modelo.cliente;
+package br.com.ifpe.oxefood.modelo.produto;
 
 import java.time.LocalDate;
 
@@ -14,7 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "produto")
 @SQLRestriction("habilitado = true")
 
 @Builder
@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente extends EntidadeAuditavel  {
+public class Produto extends EntidadeAuditavel  {
    
 
 
