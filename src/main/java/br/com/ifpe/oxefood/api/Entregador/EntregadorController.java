@@ -36,24 +36,24 @@ public class EntregadorController {
 
       entregador.entregador = repository.findById(id).get();
       entregador.setNome(entregadorAlterado.getNome());
-      entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
       entregador.setCpf(entregadorAlterado.getCpf());
+      entregador.setRg(entregadorAlterado.getRg());
+      entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
       entregador.setFoneCelular(entregadorAlterado.getFoneCelular());
-      entregador.setFoneFixo(entregadorAlterado.getFoneFixo());
-      entregador.setvalorFrete(valorFreteAlterado.getvalorFrete());
-      entregador.set(enderecoRuaAlterado.getenderecoRua;()); 
-      entregador.set(valorFreteAlterado.getvalorFrete()); 
       
+      entregador.setFoneFixo(entregadorAlterado.getFoneFixo());
+      entregador.setQtdEntregasRealizadas(entregadorAlterado.getqdEntregasRealizadas());
+      entregador.setvalorFrete(valorFreteAlterado.getvalorFrete())
+      entregador.setEnderecoRu(enderecoRuaAlterado.getEnderecoRua());
+      
+      entregador.setEnderecoCompleto(entregadorAlterado.getEnderecoCompleto()); 
+      entregador.setEnderecoNumero(entregadorAlterado.getEnderecoNumero()); 
+      entregador.settEnderecoBairro(entregadorAlterado.getEnderecoBairro()); 
+      entregador.setEnderecoCidade(entregadorAlterado.getEnderecoCidade();
+      entregador.setEnderecoCep(entregadorAlterado.getEnderecoCep();
+      entregador.settEnderecoUf(entregadorAlterado.getEnderecoUf();
+      entregador.setAtivo(entregadorAlterado.getAtivo();
   
    }
 }
 
-
-  enderecoRua;
-   private String enderecoCompleto;
-   private String enderecoNumero;
-   private String enderecoBairro;
-   private String enderecoCidade;
-   private String enderecoCep;
-   private String enderecoUf;
-   private Boolean ativo;
