@@ -2,7 +2,7 @@ package br.com.ifpe.oxefood.modelo.entregador;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service
 
 @Service
 public class EntregadorService {
@@ -12,7 +12,7 @@ public class EntregadorService {
 
    @Transactional
    public Entregador save(Entregador entregador) {
-       entregador.setHabilitado(true);
+       entregador.setHabilitado(true);//habilitado ao salva
        return repository.save(entregador);
    }
 }
