@@ -26,14 +26,14 @@ import jakarta.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente extends EntidadeAuditavel  {
-   @Column
+   @Column(nullable = false)  // Garantindo que o nome do cliente não seja nulo
    private String nome;
 
-   @Column
+   @Column(nullable = false)  // Garantindo que a data de nascimento não seja nula
      @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
-   @Column
+   @Column(nullable = false, unique = true)
    private String cpf;
    
    @Column
