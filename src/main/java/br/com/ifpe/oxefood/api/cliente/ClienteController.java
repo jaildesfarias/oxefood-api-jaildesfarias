@@ -37,15 +37,25 @@ public class ClienteController {
     public List<Cliente> listarTodos() {
         return clienteService.listarTodos();
     }
-
+    
     @GetMapping("/{id}")
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
     }
+    // Adicionando métodos para buscar por nome e CPF
+    @GetMapping("/nome/{nome}")
+    public List<Cliente> buscarPorNome(@PathVariable String nome) {
+        return clienteService.buscarClientesPorNome(nome);
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public Cliente buscarPorCpf(@PathVariable String cpf) {
+        return clienteService.buscarClientePorCpf(cpf);
 
     @PutMapping("/{id}")//Extrai o valor do ID da URL
     public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
+        
     }
 }
