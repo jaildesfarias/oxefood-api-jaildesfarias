@@ -8,18 +8,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
+@Data //Gera automaticamente getters, setters, toString(), equals() e hashCode().
+@Builder// Permite criar objetos usando o padrão Builder.
+@NoArgsConstructor//Geram os construtores padrão
 @AllArgsConstructor
 public class EntregadorRequest {
 
    private String nome;
-
    private String cpf;
-
    private String rg;
-   
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
    private String foneCelular;
@@ -40,6 +37,7 @@ public class EntregadorRequest {
               .nome(nome)
               .dataNascimento(dataNascimento)
               .cpf(cpf)
+              .rg(rg)
               .foneCelular(foneCelular)
               .foneFixo(foneFixo)
               .qtdEntregasRealizadas(qtdEntregasRealizadas)
@@ -55,5 +53,4 @@ public class EntregadorRequest {
               .build();
               
 }
-
 }
