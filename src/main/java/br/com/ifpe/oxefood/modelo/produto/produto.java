@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import org.hibernate.annotations.SQLRestriction;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +25,16 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 public class Produto extends EntidadeAuditavel  {
    
+ @Entity
+@Table(name = "CategoriaProduto")
+public class CategoriaProduto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column
+    private String chaveEmpresa;
 
    @Column
    private String codigo;
