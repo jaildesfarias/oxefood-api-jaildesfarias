@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/api/produto")
 @CrossOrigin
@@ -22,11 +20,9 @@ public class ProdutoController {
    @PostMapping
    public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
 
-       // Cria um objeto Cliente usando o método build() de ClienteRequest
-       Produto produto = ProdutoService.save(request.build());
+       Produto produto = ProdutoService.save(request.build());// Cria um objeto Cliente usando o método build() de ClienteRequest
        
-       // Retorna uma resposta HTTP 201 Created com o objeto Cliente criado
-       return new ResponseEntity<>(produto, HttpStatus.CREATED);
+       return new ResponseEntity<>(produto, HttpStatus.CREATED); // Retorna uma resposta HTTP 201 Created com o objeto Cliente criado
    }
    @Transactional
    public void update(Long id, Produto produtoAlterado) {
