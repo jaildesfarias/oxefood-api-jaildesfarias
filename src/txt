@@ -22,6 +22,17 @@ ClienteRepository:
     Usa os métodos prontos do Spring Data JPA para operações comuns.
 
 Cliente:
-
     Representa o cliente como uma entidade no banco de dados.
     É mapeado diretamente para a tabela Cliente
+
+Entidade Básica
+…Request.java
+…Repository.java
+…Service.java
+…Controller.java
+
+Cliente.java
+ClienteRequest.java
+ClienteRepository.java
+ClienteService.java
+ClienteController.java
