@@ -30,10 +30,7 @@ public class Entregador extends EntidadeAuditavel  {
    private String cpf;
 
    @Column
-   private String rg;
-
-  
-   
+   private String rg; 
 
    @Column
    @JsonFormat(pattern = "dd/MM/yyyy")
