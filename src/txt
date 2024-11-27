@@ -1,0 +1,27 @@
+na api - ClienteController e ClienteRequest em
+modelo - cliente.java, ClienteRepository e ClienteService
+lienteController:
+
+    Recebe a requisição do cliente por meio da API.
+    Valida e converte os dados recebidos para a estrutura interna do sistema.
+    Envia os dados para o ClienteService.
+
+ClienteRequest:
+
+    Facilita a transferência de dados entre a API e o sistema.
+    Realiza a conversão de dados da API para a entidade de domínio Cliente.
+
+ClienteService:
+
+    Processa a lógica de negócios, como habilitar o cliente antes de salvá-lo.
+    Utiliza o ClienteRepository para interagir com o banco de dados.
+
+ClienteRepository:
+
+    Realiza a persistência e a recuperação de dados no banco.
+    Usa os métodos prontos do Spring Data JPA para operações comuns.
+
+Cliente:
+
+    Representa o cliente como uma entidade no banco de dados.
+    É mapeado diretamente para a tabela Cliente
