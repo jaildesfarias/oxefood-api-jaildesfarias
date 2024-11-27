@@ -1,12 +1,11 @@
-
-package br.com.ifpe.oxefood.modelo.Entregador;
+package br.com.ifpe.oxefood.modelo.entregador;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface EntregadoRepository extends JpaRepository<.Entregado, Long> {
-        
-    public List<Entregado> findByNome(String nome);//  buscar Entregado pelo nome
+public interface EntregadorRepository extends JpaRepository<Entregador, Long> {
 
-    public Entregado findByCpf(String cpf);//buscar .Entregado pelo CPF
-  
+    public List<Entregador> findByNome(String nome); // Buscar Entregadores pelo nome
+
+    public Entregador findByCpf(String cpf); // Buscar Entregador pelo CPF
 }
