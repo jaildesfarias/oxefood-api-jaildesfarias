@@ -34,8 +34,7 @@ public class EntregadorController {
        Entregador entregador = entregadorService.findById(id)// Buscar o entregador pelo ID
                .orElseThrow(() -> new RuntimeException("Entregador não encontrado"));
 
-       // Atualizar os campos do entregador
-       entregador.setNome(entregadorAlterado.getNome());
+       entregador.setNome(entregadorAlterado.getNome()); // Atualizar os campos do entregador
        entregador.setCpf(entregadorAlterado.getCpf());
        entregador.setRg(entregadorAlterado.getRg());
        entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
