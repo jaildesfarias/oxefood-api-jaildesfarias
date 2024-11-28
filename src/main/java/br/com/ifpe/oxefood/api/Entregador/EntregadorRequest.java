@@ -1,4 +1,4 @@
-package br.com.ifpe.oxefood.api.Entregador;
+package br.com.ifpe.oxefood.api.entregador;
 
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;

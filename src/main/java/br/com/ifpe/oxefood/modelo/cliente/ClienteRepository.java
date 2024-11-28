@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
         
-    public List<Cliente> findByNome(String nome);//  buscar clientes pelo nome
+    public ListProduto<Cliente> findByNome(String nome);//  buscar clientes pelo nome
 
     public Cliente findByCpf(String cpf);//buscar cliente pelo CPF
   

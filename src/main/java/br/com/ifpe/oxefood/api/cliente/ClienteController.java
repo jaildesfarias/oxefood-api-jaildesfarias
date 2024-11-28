@@ -19,17 +19,17 @@ import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
 
-@RestController //Define a classe como um controlador REST.
-@RequestMapping("/api/cliente")//Mapeia o endpoint base (/api/cliente).
-@CrossOrigin// Permite chamadas de diferentes origens (CORS).
+@RestController // Define a classe como um controlador REST.
+@RequestMapping("/api/cliente") // Mapeia o endpoint base (/api/cliente).
+@CrossOrigin // Permite chamadas de diferentes origens (CORS).
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping //Mapear rotas HTTP específicas (POST, GET, PUT).
-    public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {//ResponseEntity:Encapsula as respostas HTTP com status e corpo.
-
+    @PostMapping // Mapeia rotas HTTP específicas (POST).
+    public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
+        // Encapsula a resposta HTTP com status e corpo.
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
@@ -38,12 +38,13 @@ public class ClienteController {
     public List<Cliente> listarTodos() {
         return clienteService.listarTodos();
     }
-    
+
     @GetMapping("/{id}")
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
     }
-    // Adicionando métodos para buscar por nome e CPF
+
+    // Adicionando métodos para buscar por nome e CPF.
     @GetMapping("/nome/{nome}")
     public List<Cliente> buscarPorNome(@PathVariable String nome) {
         return clienteService.buscarClientesPorNome(nome);
@@ -52,23 +53,17 @@ public class ClienteController {
     @GetMapping("/cpf/{cpf}")
     public Cliente buscarPorCpf(@PathVariable String cpf) {
         return clienteService.buscarClientePorCpf(cpf);
+    }
 
-    @PutMapping("/{id}")//Extrai o valor do ID da URL
+    @PutMapping("/{id}") // Extrai o valor do ID da URL.
     public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
-        @DeleteMapping("/{id}")
-   public ResponseEntity<Void> delete(@PathVariable Long id) {
+    }
 
-       clienteService.delete(id);
-       return ResponseEntity.ok().build();
-   }
-        
-     @PutMapping("/{id}")
- public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
-
-       clienteService.update(id, request.build());
-       return ResponseEntity.ok().build();
- }
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        clienteService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }

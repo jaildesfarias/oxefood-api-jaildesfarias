@@ -48,7 +48,7 @@ public class EntregadorController {
        entregador.setEnderecoBairro(entregadorAlterado.getEnderecoBairro());
        entregador.setEnderecoCidade(entregadorAlterado.getEnderecoCidade());
        entregador.setEnderecoCep(entregadorAlterado.getEnderecoCep());
-       entregador.setEnderecoUf(entregadorAlterado.getEnderecoUf());
+       entregador.setEnderecoUf(entregadorAlterado.getEnderecoUf());c
        entregador.setAtivo(entregadorAlterado.getAtivo());
 
        

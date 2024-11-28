@@ -49,8 +49,19 @@ public Cliente obterPorID(Long id) {
 
       repository.save(cliente);
   }
+  @Service
+public class ClienteService {
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    public Cliente buscarClientePorCpf(String cpf) {
+        Optional<Cliente> clienteOpt = clienteRepository.findByCpf(cpf);
+        return clienteOpt.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    }
 
 
         
 }
 
+}
