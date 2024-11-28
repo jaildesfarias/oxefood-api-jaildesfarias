@@ -32,7 +32,7 @@ public Cliente obterPorID(Long id) {
    @Transactional
    public void update(Long id, Cliente clienteAlterado) {
 
-      Cliente cliente = repository.findById(id).get();
+      Cliente cliente = repository.findById(id).get();//alterado e um objeto do tipo Cliente contendo os dados alterados do cliente.
       cliente.setNome(clienteAlterado.getNome());
       cliente.setDataNascimento(clienteAlterado.getDataNascimento());
       cliente.setCpf(clienteAlterado.getCpf());
