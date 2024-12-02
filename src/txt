@@ -36,3 +36,4 @@ ClienteRequest.java
 ClienteRepository.java
 ClienteService.java
 ClienteController.java
+ClienteRepository.java coloca o tipo long
