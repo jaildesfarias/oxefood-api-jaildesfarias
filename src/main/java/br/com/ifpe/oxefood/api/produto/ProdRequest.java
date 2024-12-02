@@ -2,7 +2,7 @@ package br.com.ifpe.oxefood.api.produto;
 
 import br.com.ifpe.oxefood.modelo.entregador.Entregador;
 
-public class EntregadorRequest {
+public class ProdRequest {
 
    private String codigo;
    private String titulo;
