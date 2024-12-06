@@ -17,7 +17,7 @@ import java.util.List;
 
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
-import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
+import jakarta.validation.Valid;
 
 @RestController // Define a classe como um controlador REST.
 @RequestMapping("/api/cliente") // Mapeia o endpoint base (/api/cliente).
@@ -27,40 +27,65 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping // Mapeia rotas HTTP específicas (POST).
-    public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
-        // Encapsula a resposta HTTP com status e corpo.
-        Cliente cliente = clienteService.save(request.build());
-        return new ResponseEntity<>(cliente, HttpStatus.CREATED);
+    // Adicionar endereço para um cliente
+    @PostMapping("/endereco/{clienteId}")
+    public ResponseEntity<EnderecoCliente> adicionarEnderecoCliente(
+            @PathVariable("clienteId") Long clienteId,
+            @RequestBody @Valid EnderecoClienteRequest request) {
+
+        EnderecoCliente endereco = clienteService.adicionarEnderecoCliente(clienteId, request.build());
+        return new ResponseEntity<>(endereco, HttpStatus.CREATED);
     }
 
+    // Atualizar endereço de um cliente
+    @PutMapping("/endereco/{enderecoId}")
+    public ResponseEntity<EnderecoCliente> atualizarEnderecoCliente(
+            @PathVariable("enderecoId") Long enderecoId,
+            @RequestBody @Valid EnderecoClienteRequest request) {
+
+        EnderecoCliente endereco = clienteService.atualizarEnderecoCliente(enderecoId, request.build());
+        return new ResponseEntity<>(endereco, HttpStatus.OK);
+    }
+
+    // Remover endereço de um cliente
+    @DeleteMapping("/endereco/{enderecoId}")
+    public ResponseEntity<Void> removerEnderecoCliente(@PathVariable("enderecoId") Long enderecoId) {
+        clienteService.removerEnderecoCliente(enderecoId);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Listar todos os clientes
     @GetMapping
     public List<Cliente> listarTodos() {
         return clienteService.listarTodos();
     }
 
+    // Obter cliente por ID
     @GetMapping("/{id}")
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
     }
 
-    // Adicionando métodos para buscar por nome e CPF.
+    // Buscar clientes por nome
     @GetMapping("/nome/{nome}")
     public List<Cliente> buscarPorNome(@PathVariable String nome) {
         return clienteService.buscarClientesPorNome(nome);
     }
 
+    // Buscar cliente por CPF
     @GetMapping("/cpf/{cpf}")
     public Cliente buscarPorCpf(@PathVariable String cpf) {
         return clienteService.buscarClientePorCpf(cpf);
     }
 
-    @PutMapping("/{id}") // Extrai o valor do ID da URL.
-    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
+    // Atualizar dados de um cliente
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody @Valid ClienteRequest request) {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
+    // Deletar cliente por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         clienteService.delete(id);

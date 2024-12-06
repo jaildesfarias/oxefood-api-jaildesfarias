@@ -10,10 +10,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -27,23 +29,29 @@ import jakarta.persistence.Table;
 public class Cliente extends EntidadeAuditavel {
 
      @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
-     
-   private List<EnderecoCliente> enderecos;
+         private List<EnderecoCliente> enderecos;
 
-
-    @Column(nullable = false,length = 100)  // Garantindo que o nome do cliente não seja nulo
-    private String nome;
-
-    @Column(nullable = false)  // Garantindo que a data de nascimento não seja nula
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
-
-    @Column(nullable = false, unique = true)
-    private String cpf;
+   @JsonIgnore
+   @ManyToOne
+   private Cliente cliente;
    
-    @Column
-    private String foneCelular;
+   @Column
+   private String rua;
 
-    @Column
-    private String foneFixo;
+   @Column
+   private String numero;
+
+   @Column
+   private String cep;
+
+   @Column
+   private String cidade;
+
+   @Column
+   private String estado;
+
+   @Column
+   private String complemento;
+  
+
 }

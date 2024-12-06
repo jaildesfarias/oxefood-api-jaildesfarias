@@ -7,49 +7,41 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ja
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-@NotNull // Válida se o campo está nulo.
-@NotEmpty // Válida se o campo está vazio.
-@Length // Válida o tamanho mínimo e máximo de um campo.
-
-
-
 public class ClienteRequest {
 
-   private String nome;
-   
-   @JsonFormat(pattern = "dd/MM/yyyy")
-   private LocalDate dataNascimento;
+    @NotBlank(message = "Nome não pode ser vazio.")
+    private String nome;
 
-   @NotBlank// Válida se o campo está nulo ou vazio.
-   @CPF
-   private String cpf;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
 
-   @Length // Válida o tamanho mínimo e máximo de um campo.
-   private String foneCelular;
-   
+    @NotBlank(message = "CPF não pode ser vazio.")
+    @CPF(message = "CPF inválido.")
+    private String cpf;
 
+    @Length(min = 10, max = 15, message = "Número de telefone celular deve ter entre 10 e 15 caracteres.")
+    private String foneCelular;
 
-   public Cliente build() {
+    private String foneFixo; // Opcional
 
-       return Cliente.builder()
-           .nome(nome)
-           .dataNascimento(dataNascimento)
-           .cpf(cpf)
-           .foneCelular(foneCelular)
-           .foneFixo(foneFixo)
-           .build();
-   }
-
+    public Cliente build() {
+        return Cliente.builder()
+            .nome(nome)
+            .dataNascimento(dataNascimento)
+            .cpf(cpf)
+            .foneCelular(foneCelular)
+            .foneFixo(foneFixo)
+            .build();
+    }
 }

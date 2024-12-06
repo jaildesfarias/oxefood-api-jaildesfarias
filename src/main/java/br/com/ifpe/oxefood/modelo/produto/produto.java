@@ -22,8 +22,13 @@ import jakarta.persistence.Table;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+
+
 public class Produto extends EntidadeAuditavel  {
+    
+    @NoArgsConstructor
+    @ManyToOne
+   private CategoriaProduto categoria;
    
  @Entity
 @Table(name = "CategoriaProduto")
@@ -54,7 +59,7 @@ public class CategoriaProduto {
    @Column
    private Integer TempoEntregaMaximo; 
 
-  
+}
 
 }
 
