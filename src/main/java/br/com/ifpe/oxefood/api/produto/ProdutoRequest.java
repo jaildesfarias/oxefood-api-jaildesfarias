@@ -81,4 +81,10 @@ public class ProdutoRequest {
 
         return produto;
     }
+
+    // Método para validação simples dos campos
+    public boolean validar() {
+        return idCategoria != null && codigo != null && titulo != null &&
+                valorUnitario != null && tempoEntregaMinimo != null && tempoEntregaMaximo != null;
+    }
 }
