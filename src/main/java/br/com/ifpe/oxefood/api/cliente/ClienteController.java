@@ -18,7 +18,7 @@ import java.util.List;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
-import jakarta.validation.valid;
+import jakarta.validation.Valid;
 
 @RestController // Define a classe como um controlador REST.
 @RequestMapping("/api/cliente") // Mapeia o endpoint base (/api/cliente).
