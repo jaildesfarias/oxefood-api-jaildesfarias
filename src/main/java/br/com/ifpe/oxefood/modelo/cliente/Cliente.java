@@ -26,10 +26,8 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 public class Cliente extends EntidadeAuditavel {
 
-     @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
-     
+@OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER) 
    private List<EnderecoCliente> enderecos;
-
 
     @Column(nullable = false,length = 100)  // Garantindo que o nome do cliente não seja nulo
     private String nome;
@@ -38,7 +36,7 @@ public class Cliente extends EntidadeAuditavel {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    @Column(nullable = false, unique = true)
+   @Column(unique = true)
     private String cpf;
    
     @Column
