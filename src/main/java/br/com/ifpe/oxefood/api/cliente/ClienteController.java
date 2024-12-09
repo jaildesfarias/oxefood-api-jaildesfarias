@@ -18,6 +18,7 @@ import java.util.List;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
+import jakarta.validation.valid;
 
 @RestController // Define a classe como um controlador REST.
 @RequestMapping("/api/cliente") // Mapeia o endpoint base (/api/cliente).
@@ -28,7 +29,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping // Mapeia rotas HTTP específicas (POST).
-    public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
+    public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
         // Encapsula a resposta HTTP com status e corpo.
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<>(cliente, HttpStatus.CREATED);
@@ -56,13 +57,16 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}") // Extrai o valor do ID da URL.
-    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
+    public ResponseEntity<Cliente> update(@PathVariable("id") Long id,
+            @RequestBody @Valid ClienteRequest request) {
+        
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+        
         clienteService.delete(id);
         return ResponseEntity.ok().build();
     }
