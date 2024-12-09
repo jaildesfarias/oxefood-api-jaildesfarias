@@ -19,28 +19,24 @@ import ja
 @NoArgsConstructor
 @AllArgsConstructor
 
-@NotNull // Válida se o campo está nulo.
-@NotEmpty // Válida se o campo está vazio.
-@Length // Válida o tamanho mínimo e máximo de um campo.
-
-
-
 public class ClienteRequest {
+   
+   @NotNull(message = "O Nome é de preenchimento obrigatório") // Válida se o campo está nulo.
+   @NotEmpty(message = "O Nome é de preenchimento obrigatório") // Válida se o campo está vazio.
+   @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")// Válida o tamanho mínimo e máximo de um campo.
 
    private String nome;
    
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
-   @NotBlank// Válida se o campo está nulo ou vazio.
-   @CPF
-   private String cpf;
+  @NotBlank(message = "O CPF é de preenchimento obrigatório")
+  @CPF
+  private String cpf;
 
-   @Length // Válida o tamanho mínimo e máximo de um campo.
+  @Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")
    private String foneCelular;
    
-
-
    public Cliente build() {
 
        return Cliente.builder()
