@@ -49,8 +49,8 @@ const VendaForm = () => {
                 </Form.Select>
             </Form.Group>
 
-            {/* Campo Data da Venda */}
-            <Form.Group controlId="dataVenda" className="mb-3">
+           
+            <Form.Group controlId="dataVenda" className="mb-3"> // Campo Data da Venda 
                 <Form.Label>Data da Venda</Form.Label>
                 <InputMask
                     mask="99/99/9999"
@@ -69,8 +69,8 @@ const VendaForm = () => {
                 </InputMask>
             </Form.Group>
 
-            {/* Campo Retirada em Loja */}
-            <Form.Group controlId="retiradaEmLoja" className="mb-3">
+            
+            <Form.Group controlId="retiradaEmLoja" className="mb-3">//Campo Retirada em Loja 
                 <Form.Label>Retirada em Loja</Form.Label>
                 <Form.Check
                     type="radio"
@@ -90,8 +90,8 @@ const VendaForm = () => {
                 />
             </Form.Group>
 
-            {/* Botão para Submeter */}
-            <Button variant="primary" type="submit">
+           
+            <Button variant="primary" type="submit"> // Botão para Submeter 
                 Salvar Venda
             </Button>
         </Form>

@@ -56,4 +56,4 @@ public class EntregadorController {
         return ResponseEntity.ok(entregador);
     }
 }
-//erro  entregadorService.update(entregador);
+//erro  entregadorService.update(entregador);obseva

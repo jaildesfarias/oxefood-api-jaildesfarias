@@ -84,7 +84,7 @@ public class ClienteService {
 
     // Remove um endereço de cliente (soft delete)
     @Transactional
-    public void removerEnderecoCliente(Long idEndereco) {git
+    public void removerEnderecoCliente(Long idEndereco) {
         EnderecoCliente endereco = enderecoClienteRepository.findById(idEndereco)
                 .orElseThrow(() -> new RuntimeException("Endereço com ID " + idEndereco + " não encontrado"));
 

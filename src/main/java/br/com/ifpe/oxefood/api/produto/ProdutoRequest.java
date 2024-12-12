@@ -1,74 +1,91 @@
 package br.com.ifpe.oxefood.api.produto;
 
-import br.com.ifpe.oxefood.modelo.entregador.Entregador;
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 
 public class ProdutoRequest {
-    
+
     private Long idCategoria;
+    private String codigo;
+    private String titulo;
+    private String descricao;
+    private Double valorUnitario;
+    private Integer tempoEntregaMinimo;
+    private Integer tempoEntregaMaximo;
 
-   private String codigo;
-   private String titulo;
-   private String descricao;
-   private Double valorUnitario;
-   private Integer tempoEntregaMinimo;
-   private Integer tempoEntregaMaximo;
+    // Getters and Setters
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
 
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 
-   public String getCodigo() {
-       return codigo;
-   }
+    public String getCodigo() {
+        return codigo;
+    }
 
-   public void setCodigo(String codigo) {
-       this.codigo = codigo;
-   }
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
-   public String getTitulo() {
-    return titulo;
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(Double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public Integer getTempoEntregaMinimo() {
+        return tempoEntregaMinimo;
+    }
+
+    public void setTempoEntregaMinimo(Integer tempoEntregaMinimo) {
+        this.tempoEntregaMinimo = tempoEntregaMinimo;
+    }
+
+    public Integer getTempoEntregaMaximo() {
+        return tempoEntregaMaximo;
+    }
+
+    public void setTempoEntregaMaximo(Integer tempoEntregaMaximo) {
+        this.tempoEntregaMaximo = tempoEntregaMaximo;
+    }
+
+    // Método para construir um objeto Produto a partir de ProdutoRequest
+    public Produto build() {
+        Produto produto = new Produto();
+        produto.setIdCategoria(this.idCategoria);  // Caso o Produto possua este campo
+        produto.setCodigo(this.codigo);
+        produto.setTitulo(this.titulo);
+        produto.setDescricao(this.descricao);
+        produto.setValorUnitario(this.valorUnitario);
+        produto.setTempoEntregaMinimo(this.tempoEntregaMinimo);
+        produto.setTempoEntregaMaximo(this.tempoEntregaMaximo);
+
+        return produto;
+    }
+
+   
+    public boolean validar() {//  Método para validação simples dos campos
+        return idCategoria != null && codigo != null && titulo != null &&
+                valorUnitario != null && tempoEntregaMinimo != null && tempoEntregaMaximo != null;
+    }
 }
-public void setTitulo(String titulo) {
-    this.titulo = titulo;
-}
-public String getDescricao() {
-    return  descricao;
-}
-public void setTitulo(String titulo) {
-    this.titulo = titulo;
-}
-public String getvalorUnitario(Double valorUnitario) {
-    return  valorUnitario;
-
-public void setValorUnitario(String valorUnitario) {
-    this. valorUnitario = valorUnitario;
-
-   public String getTempoEntregaMinimo() {
-       return TempoEntregaMinimo;
-   }
-
-   public void setTempoEntregaMinimo(String TempoEntregaMinimo) {
-       this.tempoEntregaMinimoe =  tempoEntregaMinimoe;
-   }
-
-   public String getTempoEntregaMaximo() {
-       return TempoEntregaMaximo;
-   }
-
-   public void setTempoEntregaMaximo(Integer TempoEntregaMaximo) {
-       this.TempoEntregaMaximo = TempoEntregaMaximo;
-   }
-
- 
-   public Produto build() {
-       Produto produto = new Produto();
-       produto.setCodigo(this.codigo);
-       produto.setTitulo(this.titulo);
-       produto.setDescricao(this.descricao);
-       produto.setValorUnitario(this.valorUnitario);
-       produto.setETempoEntregaMinimo(this.TempoEntregaMinimo);
-       produto.setTempoEntregaMaximo(this.TempoEntregaMaximo);
-
-       return  produto;
-
-   }
-}
-

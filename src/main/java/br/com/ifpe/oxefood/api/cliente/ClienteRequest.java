@@ -18,7 +18,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
+
 public class ClienteRequest {
+   
+   @NotNull(message = "O Nome é de preenchimento obrigatório") // Válida se o campo está nulo.
+   @NotEmpty(message = "O Nome é de preenchimento obrigatório") // Válida se o campo está vazio.
+   @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")// Válida o tamanho mínimo e máximo de um campo.
 
     @NotBlank(message = "Nome não pode ser vazio.")
     private String nome;
@@ -34,6 +40,24 @@ public class ClienteRequest {
     private String foneCelular;
 
     private String foneFixo; // Opcional
+
+  @NotBlank(message = "O CPF é de preenchimento obrigatório")
+  @CPF
+  private String cpf;
+
+  @Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")
+   private String foneCelular;
+   
+   public Cliente build() {
+
+       return Cliente.builder()
+           .nome(nome)
+           .dataNascimento(dataNascimento)
+           .cpf(cpf)
+           .foneCelular(foneCelular)
+           .foneFixo(foneFixo)
+           .build();
+   }
 
     public Cliente build() {
         return Cliente.builder()

@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/main/java/br/com/ifpe/oxefood/api/venda/VendaController.java
 package br.com.ifpe.oxefood.api.venda;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,6 @@ public class VendaController{
    }
 }
 
+=======
+>>>>>>> 154c6c50eacee573bf2ba7282954319370978928:src/main/java/br/com/ifpe/oxefood/api/venda/ProdutoController.java
 

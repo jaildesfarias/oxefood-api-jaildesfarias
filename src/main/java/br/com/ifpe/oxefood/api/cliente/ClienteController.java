@@ -17,6 +17,9 @@ import java.util.List;
 
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
+
+import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
+
 import jakarta.validation.Valid;
 
 @RestController // Define a classe como um controlador REST.
@@ -27,14 +30,19 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    // Adicionar endereço para um cliente
-    @PostMapping("/endereco/{clienteId}")
+    @PostMapping("/endereco/{clienteId}")// Adicionar endereço para um cliente
     public ResponseEntity<EnderecoCliente> adicionarEnderecoCliente(
             @PathVariable("clienteId") Long clienteId,
             @RequestBody @Valid EnderecoClienteRequest request) {
 
         EnderecoCliente endereco = clienteService.adicionarEnderecoCliente(clienteId, request.build());
         return new ResponseEntity<>(endereco, HttpStatus.CREATED);
+
+    @PostMapping // Mapeia rotas HTTP específicas (POST).
+    public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
+        // Encapsula a resposta HTTP com status e corpo.
+        Cliente cliente = clienteService.save(request.build());
+        return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
 
     // Atualizar endereço de um cliente
@@ -54,20 +62,17 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
-    // Listar todos os clientes
     @GetMapping
     public List<Cliente> listarTodos() {
         return clienteService.listarTodos();
     }
 
-    // Obter cliente por ID
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // Obter cliente por ID
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
     }
 
-    // Buscar clientes por nome
-    @GetMapping("/nome/{nome}")
+    @GetMapping("/nome/{nome}")// Buscar clientes por nome
     public List<Cliente> buscarPorNome(@PathVariable String nome) {
         return clienteService.buscarClientesPorNome(nome);
     }
@@ -78,16 +83,21 @@ public class ClienteController {
         return clienteService.buscarClientePorCpf(cpf);
     }
 
-    // Atualizar dados de um cliente
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // Atualizar dados de um cliente
     public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody @Valid ClienteRequest request) {
+
+    @PutMapping("/{id}") // Extrai o valor do ID da URL.
+    public ResponseEntity<Cliente> update(@PathVariable("id") Long id,
+            @RequestBody @Valid ClienteRequest request) {
+        
+            
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
-    // Deletar cliente por ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")// Deletar cliente por ID
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+        
         clienteService.delete(id);
         return ResponseEntity.ok().build();
     }
