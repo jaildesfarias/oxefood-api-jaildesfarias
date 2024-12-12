@@ -1,35 +1,45 @@
-<<<<<<< HEAD:src/main/java/br/com/ifpe/oxefood/api/venda/VendaController.java
 package br.com.ifpe.oxefood.api.venda;
 
+import br.com.ifpe.oxefood.modelo.produto.Produto;
+import br.com.ifpe.oxefood.modelo.venda.Venda;
+import br.com.ifpe.oxefood.modelo.venda.VendaService;
+import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
+import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.ifpe.oxefood.modelo.venda.Venda;
-import br.com.ifpe.oxefood.modelo.venda.VendaService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/venda")
 @CrossOrigin
-public class VendaController{
-    
+public class VendaController {
 
-   @Autowired
-   private VendaService venda Service;
+    @Autowired
+    private VendaService vendaService;
 
-   @PostMapping
-   public ResponseEntity<Venda> save(@RequestBody VendaRequest request) {
+    @Autowired
+    private ProdutoService produtoService;
 
-       Venda venda = VendaService.save(request.build());
-       return new ResponseEntity<Venda>(venda, HttpStatus.CREATED);
-   }
+    @Autowired
+    private ClienteService clienteService;
+
+    @PostMapping
+    public ResponseEntity<Venda> realizarVenda(@RequestBody VendaRequest request) {
+        // Recupera o cliente (supondo que você tenha o ID do cliente no request)
+        Cliente cliente = clienteService.obterPorId(request.getClienteId());
+        
+        // Recupera os produtos
+        List<Produto> produtos = produtoService.obterProdutosPorIds(request.getProdutoIds());
+        
+        try {
+            // Processa a venda
+            Venda venda = vendaService.processarVenda(produtos, cliente);
+            return new ResponseEntity<>(venda, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
-
-=======
->>>>>>> 154c6c50eacee573bf2ba7282954319370978928:src/main/java/br/com/ifpe/oxefood/api/venda/ProdutoController.java
-

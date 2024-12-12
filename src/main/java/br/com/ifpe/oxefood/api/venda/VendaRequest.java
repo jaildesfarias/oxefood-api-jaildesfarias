@@ -1,6 +1,4 @@
-package br.com.ifpe.oxefood.api;
 
-public class VendaResquest {
     
     package br.com.ifpe.oxefood.api.venda;
 

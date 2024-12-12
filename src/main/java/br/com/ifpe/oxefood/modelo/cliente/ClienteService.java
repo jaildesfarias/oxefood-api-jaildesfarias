@@ -33,8 +33,7 @@ public class ClienteService {
                 .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " não encontrado")); // Mensagem personalizada
     }
 
-    // Atualiza um cliente existente
-    @Transactional
+    @Transactional // Atualiza um cliente existente
     public void update(Long id, Cliente clienteAlterado) {
         Cliente cliente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " não encontrado"));

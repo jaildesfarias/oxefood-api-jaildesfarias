@@ -28,14 +28,13 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 public class Cliente extends EntidadeAuditavel {
 
-<<<<<<< HEAD
      @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
          private List<EnderecoCliente> enderecos;
 
    @JsonIgnore
    @ManyToOne
    private Cliente cliente;
-=======
+
 @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER) 
    private List<EnderecoCliente> enderecos;
 
@@ -48,7 +47,7 @@ public class Cliente extends EntidadeAuditavel {
 
    @Column(unique = true)
     private String cpf;
->>>>>>> 154c6c50eacee573bf2ba7282954319370978928
+
    
    @Column
    private String rua;
