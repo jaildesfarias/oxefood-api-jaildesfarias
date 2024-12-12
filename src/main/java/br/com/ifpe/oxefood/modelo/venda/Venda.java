@@ -7,14 +7,15 @@ const VendaForm = () => {
     const [statusVenda, setStatusVenda] = useState('');
     const [dataVenda, setDataVenda] = useState('');
     const [retiradaEmLoja, setRetiradaEmLoja] = useState(false);
+    const [error, setError] = useState(''); // Estado para exibir erros
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validação simples da data (formato DD/MM/AAAA)
+        // Validação de data
         const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
         if (!dateRegex.test(dataVenda)) {
-            alert('Por favor, insira uma data válida no formato DD/MM/AAAA.');
+            setError('Por favor, insira uma data válida no formato DD/MM/AAAA.');
             return;
         }
 
@@ -25,14 +26,20 @@ const VendaForm = () => {
                 retiradaEmLoja,
             });
             alert('Venda salva com sucesso!');
+           
+            setStatusVenda(''); // Resetar o formulário após o sucesso
+            setDataVenda('');
+            setRetiradaEmLoja(false);
+            setError('');
         } catch (err) {
-            alert(`Erro ao salvar venda: ${err.response?.data?.message || err.message}`);
+            setError(`Erro ao salvar venda: ${err.response?.data?.message || err.message}`);
         }
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-            {/* Campo Status da Venda */}
+            {error && <p className="text-danger">{error}</p>} {/* Exibição de erro */}
+
             <Form.Group controlId="statusVenda" className="mb-3">
                 <Form.Label>Status da Venda</Form.Label>
                 <Form.Select
@@ -49,8 +56,7 @@ const VendaForm = () => {
                 </Form.Select>
             </Form.Group>
 
-           
-            <Form.Group controlId="dataVenda" className="mb-3"> // Campo Data da Venda 
+            <Form.Group controlId="dataVenda" className="mb-3">
                 <Form.Label>Data da Venda</Form.Label>
                 <InputMask
                     mask="99/99/9999"
@@ -69,8 +75,7 @@ const VendaForm = () => {
                 </InputMask>
             </Form.Group>
 
-            
-            <Form.Group controlId="retiradaEmLoja" className="mb-3">//Campo Retirada em Loja 
+            <Form.Group controlId="retiradaEmLoja" className="mb-3">
                 <Form.Label>Retirada em Loja</Form.Label>
                 <Form.Check
                     type="radio"
@@ -90,8 +95,7 @@ const VendaForm = () => {
                 />
             </Form.Group>
 
-           
-            <Button variant="primary" type="submit"> // Botão para Submeter 
+            <Button variant="primary" type="submit">
                 Salvar Venda
             </Button>
         </Form>
