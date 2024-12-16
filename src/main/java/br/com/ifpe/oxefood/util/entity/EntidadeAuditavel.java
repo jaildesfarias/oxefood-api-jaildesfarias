@@ -3,12 +3,17 @@ package br.com.ifpe.oxefood.util.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
+import org.hibernate.annotations.FetchMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
@@ -31,6 +36,12 @@ import lombok.Setter;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class EntidadeAuditavel extends EntidadeNegocio {
+
+    
+     @OneToOne
+   @JoinColumn(nullable = false)
+   private Usuario usuario;
+
 
     @JsonIgnore
     @Version

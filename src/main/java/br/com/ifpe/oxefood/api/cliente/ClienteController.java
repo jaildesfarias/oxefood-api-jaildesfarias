@@ -17,30 +17,32 @@ import java.util.List;
 
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
-
+import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente; // Importe a classe EnderecoCliente
 import br.com.ifpe.oxefood.api.cliente.ClienteRequest;
+import br.com.ifpe.oxefood.api.cliente.EnderecoClienteRequest;
 
 import jakarta.validation.Valid;
 
-@RestController // Define a classe como um controlador REST.
-@RequestMapping("/api/cliente") // Mapeia o endpoint base (/api/cliente).
-@CrossOrigin // Permite chamadas de diferentes origens (CORS).
+@RestController
+@RequestMapping("/api/cliente")
+@CrossOrigin
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/endereco/{clienteId}")// Adicionar endereço para um cliente
+    // Adicionar endereço para um cliente
+    @PostMapping("/endereco/{clienteId}")
     public ResponseEntity<EnderecoCliente> adicionarEnderecoCliente(
             @PathVariable("clienteId") Long clienteId,
             @RequestBody @Valid EnderecoClienteRequest request) {
 
         EnderecoCliente endereco = clienteService.adicionarEnderecoCliente(clienteId, request.build());
         return new ResponseEntity<>(endereco, HttpStatus.CREATED);
+    }
 
-    @PostMapping // Mapeia rotas HTTP específicas (POST).
+    @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
-        // Encapsula a resposta HTTP com status e corpo.
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
@@ -67,37 +69,30 @@ public class ClienteController {
         return clienteService.listarTodos();
     }
 
-    @GetMapping("/{id}") // Obter cliente por ID
+    @GetMapping("/{id}")
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
     }
 
-    @GetMapping("/nome/{nome}")// Buscar clientes por nome
+    @GetMapping("/nome/{nome}")
     public List<Cliente> buscarPorNome(@PathVariable String nome) {
         return clienteService.buscarClientesPorNome(nome);
     }
 
-    // Buscar cliente por CPF
     @GetMapping("/cpf/{cpf}")
     public Cliente buscarPorCpf(@PathVariable String cpf) {
         return clienteService.buscarClientePorCpf(cpf);
     }
 
-    @PutMapping("/{id}") // Atualizar dados de um cliente
-    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody @Valid ClienteRequest request) {
-
-    @PutMapping("/{id}") // Extrai o valor do ID da URL.
+    @PutMapping("/{id}")
     public ResponseEntity<Cliente> update(@PathVariable("id") Long id,
-            @RequestBody @Valid ClienteRequest request) {
-        
-            
+                                          @RequestBody @Valid ClienteRequest request) {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}")// Deletar cliente por ID
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        
         clienteService.delete(id);
         return ResponseEntity.ok().build();
     }

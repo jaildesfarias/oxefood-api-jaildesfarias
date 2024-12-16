@@ -1,40 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import InputMask from 'react-input-mask';
-
-const VendaForm = () => {
-    const [statusVenda, setStatusVenda] = useState('');
-    const [dataVenda, setDataVenda] = useState('');
-    const [retiradaEmLoja, setRetiradaEmLoja] = useState(false);
-    const [error, setError] = useState(''); // Estado para exibir erros
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // Validação de data
-        const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-        if (!dateRegex.test(dataVenda)) {
-            setError('Por favor, insira uma data válida no formato DD/MM/AAAA.');
-            return;
-        }
-
-        try {
-            const response = await axios.post('/venda', {
-                statusVenda,
-                dataVenda,
-                retiradaEmLoja,
-            });
-            alert('Venda salva com sucesso!');
-           
-            setStatusVenda(''); // Resetar o formulário após o sucesso
-            setDataVenda('');
-            setRetiradaEmLoja(false);
-            setError('');
-        } catch (err) {
-            setError(`Erro ao salvar venda: ${err.response?.data?.message || err.message}`);
-        }
-    };
+import InputMask from 'react-input-mask';(web)
 
     return (
         <Form onSubmit={handleSubmit}>
