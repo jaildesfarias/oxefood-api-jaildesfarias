@@ -16,3 +16,4 @@ public class EntregadorService {
        return repository.save(entregador);
    }
 }
+//corrig no save

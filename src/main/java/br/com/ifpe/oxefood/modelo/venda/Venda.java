@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
-import InputMask from 'react-input-mask';(web)
+package br.com.ifpe.oxefood.modelo.venda;
+
+import java.time.LocalDate;
+
+import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.hibernate.annotations.SQLRestriction;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -70,3 +81,4 @@ import InputMask from 'react-input-mask';(web)
 };
 
 export default VendaForm;
+//corrig

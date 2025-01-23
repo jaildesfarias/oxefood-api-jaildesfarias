@@ -9,3 +9,4 @@ public interface EntregadorRepository extends JpaRepository<EntregadorRepository
 
     public Entregador findByCpf(String cpf); // Buscar Entregador pelo CPF
 }
+//esta branco

@@ -62,4 +62,5 @@ public class CategoriaProduto {
 }
 
 }
+//corrigir @GeneratedValue(strategy = GenerationType.SEQUENCE)
 

@@ -78,3 +78,4 @@ public class Usuario extends EntidadeNegocio implements UserDetails {
    }
 }
 
+//corig

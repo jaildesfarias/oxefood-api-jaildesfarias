@@ -73,3 +73,4 @@ public class Entregador extends EntidadeAuditavel  {
    private Boolean ativo;
 
 }
+// corrigir

@@ -19,5 +19,5 @@ public class Perfil extends EntidadeNegocio implements GrantedAuthority {
        return this.nome;
    }
   
-}
+}//corrig
 

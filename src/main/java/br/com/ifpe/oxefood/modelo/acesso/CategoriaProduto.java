@@ -1,4 +1,4 @@
-package br.com.ifpe.oxefood.modelo.produto;
+package br.com.ifpe.oxefood.modelo.acesso;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
