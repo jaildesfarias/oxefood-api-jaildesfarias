@@ -1,19 +1,35 @@
 package br.com.ifpe.oxefood.modelo.entregador;
 
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
-@Service
-public class EntregadorService {
+@Entity
+@Getter
+@Setter
+public class Entregador {
 
-   @Autowired
-   private EntregadorRepository repository;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-   @Transactional
-   public Entregador save(Entregador entregador) {
-       entregador.setHabilitado(true);//habilitado ao salva
-       return repository.save(entregador);
-   }
+    private String nome;
+    private String cpf;
+    private String rg;
+    private String dataNascimento;
+    private String foneCelular;
+    private String foneFixo;
+    private Integer qtdEntregasRealizadas;
+    private Double valorFrete;
+    private String enderecoRua;
+    private String enderecoCompleto;
+    private String enderecoNumero;
+    private String enderecoBairro;
+    private String enderecoCidade;
+    private String enderecoCep;
+    private String enderecoUf;
+    private Boolean habilitado; // Campo que define se o entregador está ativo/habilitado
 }
-//corrig no save
