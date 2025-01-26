@@ -3,7 +3,6 @@ package br.com.ifpe.oxefood.util.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
 import org.hibernate.annotations.FetchMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -82,6 +81,5 @@ public abstract class EntidadeAuditavel extends EntidadeNegocio {
      private String descricao;
         
     }
-
 
 }
