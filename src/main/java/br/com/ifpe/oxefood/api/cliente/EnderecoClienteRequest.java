@@ -2,9 +2,6 @@ package br.com.ifpe.oxefood.api.cliente;
 
 import org.hibernate.annotations.FetchMode;
 
-
-
-
 public class EnderecoClienteRequest {
    
         private String rua;
