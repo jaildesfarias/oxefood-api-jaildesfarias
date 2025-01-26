@@ -3,7 +3,6 @@ package br.com.ifpe.oxefood.modelo.cliente;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -41,11 +40,11 @@ public class ClienteService {
      *
      * @param id Identificador do cliente.
      * @return Cliente encontrado.
-     * @throws RuntimeException Se o cliente não for encontrado.
+     * @throws ClienteNotFoundException Se o cliente não for encontrado.
      */
     public Cliente obterPorID(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " não encontrado."));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente com ID " + id + " não encontrado."));
     }
 
     /**
@@ -53,13 +52,14 @@ public class ClienteService {
      *
      * @param id              Identificador do cliente a ser atualizado.
      * @param clienteAlterado Dados atualizados do cliente.
-     * @throws RuntimeException Se o cliente não for encontrado.
+     * @throws ClienteNotFoundException Se o cliente não for encontrado.
      */
     @Transactional
     public void update(Long id, Cliente clienteAlterado) {
         Cliente cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " não encontrado."));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente com ID " + id + " não encontrado."));
 
+        // Atualiza os dados
         cliente.setNome(clienteAlterado.getNome());
         cliente.setDataNascimento(clienteAlterado.getDataNascimento());
         cliente.setCpf(clienteAlterado.getCpf());
@@ -73,12 +73,12 @@ public class ClienteService {
      * Desativa um cliente (soft delete).
      *
      * @param id Identificador do cliente a ser desativado.
-     * @throws RuntimeException Se o cliente não for encontrado.
+     * @throws ClienteNotFoundException Se o cliente não for encontrado.
      */
     @Transactional
     public void delete(Long id) {
         Cliente cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " não encontrado."));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente com ID " + id + " não encontrado."));
         cliente.setHabilitado(Boolean.FALSE);
         repository.save(cliente);
     }
@@ -88,11 +88,11 @@ public class ClienteService {
      *
      * @param cpf CPF do cliente.
      * @return Cliente encontrado.
-     * @throws RuntimeException Se o cliente não for encontrado.
+     * @throws ClienteNotFoundException Se o cliente não for encontrado.
      */
     public Cliente buscarClientePorCpf(String cpf) {
         return repository.findByCpf(cpf)
-                .orElseThrow(() -> new RuntimeException("Cliente com CPF " + cpf + " não encontrado."));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente com CPF " + cpf + " não encontrado."));
     }
 
     /**
@@ -101,12 +101,12 @@ public class ClienteService {
      * @param id               Identificador do endereço.
      * @param enderecoAlterado Dados atualizados do endereço.
      * @return Endereço atualizado.
-     * @throws RuntimeException Se o endereço não for encontrado.
+     * @throws EnderecoNotFoundException Se o endereço não for encontrado.
      */
     @Transactional
     public EnderecoCliente atualizarEnderecoCliente(Long id, EnderecoCliente enderecoAlterado) {
         EnderecoCliente endereco = enderecoClienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Endereço com ID " + id + " não encontrado."));
+                .orElseThrow(() -> new EnderecoNotFoundException("Endereço com ID " + id + " não encontrado."));
 
         endereco.setRua(enderecoAlterado.getRua());
         endereco.setNumero(enderecoAlterado.getNumero());
@@ -123,12 +123,12 @@ public class ClienteService {
      * Remove um endereço de cliente (soft delete).
      *
      * @param idEndereco Identificador do endereço a ser removido.
-     * @throws RuntimeException Se o endereço ou cliente não for encontrado.
+     * @throws EnderecoNotFoundException Se o endereço ou cliente não for encontrado.
      */
     @Transactional
     public void removerEnderecoCliente(Long idEndereco) {
         EnderecoCliente endereco = enderecoClienteRepository.findById(idEndereco)
-                .orElseThrow(() -> new RuntimeException("Endereço com ID " + idEndereco + " não encontrado."));
+                .orElseThrow(() -> new EnderecoNotFoundException("Endereço com ID " + idEndereco + " não encontrado."));
 
         endereco.setHabilitado(Boolean.FALSE);
         enderecoClienteRepository.save(endereco);
@@ -138,4 +138,3 @@ public class ClienteService {
         repository.save(cliente);
     }
 }
-// corrigir
