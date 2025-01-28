@@ -1,4 +1,5 @@
 package br.com.ifpe.oxefood.api.entregador;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/entregador")
@@ -39,8 +40,7 @@ public class EntregadorController {
         entregador.setEnderecoUf(entregadorAlterado.getEnderecoUf());
         entregador.setAtivo(entregadorAlterado.getAtivo());
 
-        // Salva a atualização
-        entregadorService.update(entregador);
+        entregadorService.update(entregador); // Salva a atualização
         return ResponseEntity.ok(entregador);
     }
 }
