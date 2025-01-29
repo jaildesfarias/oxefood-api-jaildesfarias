@@ -1,5 +1,6 @@
 package br.com.ifpe.oxefood.api.produto;
 
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,19 @@ import br.com.ifpe.oxefood.modelo.produto.CategoriaProdutoService;
 @RestController
 @RequestMapping("/api/produto")
 @CrossOrigin
+    @Tag(
+    name = "API Produto",
+    description = "API responsável pelos servidos de produto no sistema"
+)
+
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
+      @Operation(
+       summary = "Serviço responsável por salvar um cliente no sistema.",
+       description = "Exemplo de descrição de um endpoint responsável por inserir um cliente no sistema."
+   )
 
     @Autowired
     private CategoriaProdutoService categoriaProdutoService;
