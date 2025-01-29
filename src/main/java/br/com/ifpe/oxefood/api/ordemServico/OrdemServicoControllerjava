@@ -1,5 +1,6 @@
 package br.com.ifpe.oxefood.api.ordemServico;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,19 @@ import br.com.ifpe.oxefood.modelo.ordemServico.OrdemServicoService;
 @RestController
 @RequestMapping("/api/ordemServico")
 @CrossOrigin
+@Tag(
+    name = "API OrdemServico",
+    description = "API responsável pelos servidos de ordemServico no sistema"
+)
+
 public class OrdemServicoController {
 
     @Autowired
     private OrdemServicoService OrdemServicoService;
+      @Operation(
+       summary = "Serviço responsável por salvar um OrdemServico no sistema.",
+       description = "Exemplo de descrição de um endpoint responsável por inserir um ordemServico no sistema."
+   )
 
     @PostMapping
     public ResponseEntity<OrdemServico> save(@RequestBody OrdemServicorRequest request) {
