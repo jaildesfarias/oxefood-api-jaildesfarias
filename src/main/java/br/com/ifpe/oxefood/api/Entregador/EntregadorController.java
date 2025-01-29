@@ -5,9 +5,39 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/api/entregador")
 @CrossOrigin
 public class EntregadorController {
+@Tag(
+    name = "API Entregador",
+    description = "API responsável pelos servidos de entregador no sistema"
+)
 
     @Autowired
     private EntregadorService entregadorService;
+...
+import io.swagger.v3.oas.annotations.Operation;
+...
+@RestController
+@RequestMapping("/api/cliente")
+@CrossOrigin
+@Tag(
+    name = "API Cliente",
+    description = "API responsável pelos servidos de cliente no sistema"
+)
+public class ClienteController {
+
+   @Autowired
+   private ClienteService clienteService;
+
+   @Operation(
+       summary = "Serviço responsável por salvar um entregador no sistema.",
+       description = "Exemplo de descrição de um endpoint responsável por inserir um entregador no sistema."
+   )
+   @PostMapping
+   public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
+
+       Cliente cliente = clienteService.save(request.build());
+       return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+   }
+...
 
     @PostMapping
     public ResponseEntity<Entregador> save(@RequestBody EntregadorRequest request) {
