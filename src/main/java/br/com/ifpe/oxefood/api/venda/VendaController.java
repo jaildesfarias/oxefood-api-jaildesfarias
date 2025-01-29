@@ -1,5 +1,6 @@
 package br.com.ifpe.oxefood.api.venda;
 
+import io.swagger.v3.oas.annotations.Operation
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import br.com.ifpe.oxefood.modelo.venda.Venda;
 import br.com.ifpe.oxefood.modelo.venda.VendaService;
@@ -9,16 +10,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/venda")
 @CrossOrigin
+    @Tag(
+    name = "API Venda",
+    description = "API responsável pelos servidos de venda no sistema"
+)
+
 public class VendaController {
 
     @Autowired
     private VendaService vendaService;
+    @Operation(
+       summary = "Serviço responsável por salvar um vendae no sistema.",
+       description = "Exemplo de descrição de um endpoint responsável por inserir um venda no sistema."
+   )
+
 
     @Autowired
     private ProdutoService produtoService;
