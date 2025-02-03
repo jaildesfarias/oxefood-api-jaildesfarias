@@ -1,6 +1,9 @@
 package br.com.ifpe.oxefood.modelo.entregador;
 
 import java.time.LocalDate;
+
+import org.hibernate.annotations.SQLRestriction;
+
 import com.fasterxml.jackson.annotation.JsonFormat;  // Corrigido para a importação correta de JsonFormat
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import lombok.AllArgsConstructor;
@@ -13,14 +16,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 
-
-
 @Entity
 @Table(name = "Entregador")
 @SQLRestriction("habilitado = true")//erro
-
-@Builder//erro
-
 @Getter
 @Setter
 @AllArgsConstructor

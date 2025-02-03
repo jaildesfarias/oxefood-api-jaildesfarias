@@ -9,10 +9,12 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
 
-@Entity
+import br.com.ifpe.oxefood.util.entity.EntidadeNegocio;
+
 @Getter
 @Setter
-public class Entregador {
+@Entity
+public class Entregador extends EntidadeNegocio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
