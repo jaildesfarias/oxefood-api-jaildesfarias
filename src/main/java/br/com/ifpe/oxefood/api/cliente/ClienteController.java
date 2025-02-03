@@ -138,4 +138,4 @@ public class ClienteController {
         clienteService.removerCliente(enderecoId);
         return ResponseEntity.noContent().build();
     }
-}
+}//corrigir 
