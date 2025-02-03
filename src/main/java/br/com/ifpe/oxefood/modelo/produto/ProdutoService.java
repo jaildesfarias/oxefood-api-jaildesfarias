@@ -12,37 +12,23 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
+    /**
+     * Salva um novo produto no banco de dados, com habilitação padrão.
+     */
     @Transactional
     public Produto save(Produto produto) {
         produto.setHabilitado(Boolean.TRUE); // Habilita o produto por padrão.
         return repository.save(produto); // Salva o produto no banco.
     }
 
-    produto.setHabilitado(Boolean.TRUE);
-       return repository.save(produto);
-   }
-   @Transactional
-   public void update(Long id, Produto produtoAlterado) {
-
-       Produto produto = repository.findById(id).get();
-       produto.setCategoria(produtoAlterado.getCategoria());
-       produto.setCodigo(produtoAlterado.getCodigo());
-       produto.setTitulo(produtoAlterado.getTitulo());
-       produto.setDescricao(produtoAlterado.getDescricao());
-       produto.setValorUnitario(produtoAlterado.getValorUnitario());
-       produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
-       produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
-
-       produto.setVersao(produto.getVersao() + 1);
-       repository.save(produto);
-   }
-
+    /**
+     * Atualiza os dados de um produto existente, com validação de valor.
+     */
     @Transactional
     public void update(Long id, Produto produtoAlterado) {
         // Verifica se o produto existe no banco ou lança uma exceção.
         Produto produto = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado para o ID: " + id));
-
 
         // Validação: Verifica se o valor unitário é menor que o mínimo permitido.
         if (produtoAlterado.getValorUnitario() < 10) {
@@ -65,9 +51,11 @@ public class ProdutoService {
         repository.save(produto);
     }
 
+    /**
+     * Lista todos os produtos no banco de dados.
+     */
     public List<Produto> listarTodos() {
-        return repository.findAll(); // Corrigido o método para retornar todos os produtos.
+        return repository.findAll(); // Retorna todos os produtos.
     }
-
 }
-//corrig
+corrigir

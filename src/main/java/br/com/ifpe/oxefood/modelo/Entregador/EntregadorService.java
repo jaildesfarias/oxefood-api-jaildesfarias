@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -16,14 +18,26 @@ public class Entregador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true)
     private String cpf;
+
     private String rg;
-    private String dataNascimento;
+
+    @Column(nullable = false)
+    private LocalDate dataNascimento;  // Alterado para LocalDate
+
     private String foneCelular;
     private String foneFixo;
+
+    @Column(nullable = true)
     private Integer qtdEntregasRealizadas;
-    private Double valorFrete;
+
+    @Column(nullable = false)
+    private Double valorFrete;  // Alterado para Double
+
     private String enderecoRua;
     private String enderecoCompleto;
     private String enderecoNumero;
@@ -31,5 +45,7 @@ public class Entregador {
     private String enderecoCidade;
     private String enderecoCep;
     private String enderecoUf;
-    private Boolean habilitado; // Campo que define se o entregador está ativo/habilitado
+
+    @Column(nullable = false)
+    private Boolean habilitado = true;  // Valor padrão "true"
 }

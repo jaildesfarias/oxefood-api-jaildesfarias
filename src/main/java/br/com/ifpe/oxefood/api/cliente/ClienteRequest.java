@@ -60,6 +60,17 @@ public class ClienteRequest {
                 .roles(Arrays.asList(new Perfil(Perfil.ROLE_CLIENTE)))
                 .build();
     }
+    public class Cliente {
+    
+        private EnderecoCliente endereco;
+    
+        public Cliente() {
+            this.endereco = new EnderecoCliente();
+            endereco.setLogradouro("Rua A");
+            endereco.setNumero("123");
+        }
+    }
+    
 
     /**
      * Constrói o objeto Cliente a partir dos dados de ClienteRequest.

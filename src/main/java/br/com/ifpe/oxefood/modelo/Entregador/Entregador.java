@@ -1,76 +1,79 @@
 package br.com.ifpe.oxefood.modelo.entregador;
 
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;  // Corrigido para a importação correta de JsonFormat
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.SQLRestriction;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
+
+
 
 @Entity
 @Table(name = "Entregador")
-@SQLRestriction("habilitado = true")
+@SQLRestriction("habilitado = true")//erro
 
-@Builder
+@Builder//erro
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Entregador extends EntidadeAuditavel  {
+@Builder
+public class Entregador extends EntidadeAuditavel {
 
-   @Column
-   private String nome;
-   
-   @Column
-   private String cpf;
+    @Column(nullable = false)
+    private String nome;
 
-   @Column
-   private String rg; 
+    @Column(nullable = false, unique = true)
+    private String cpf;
 
-   @Column
-   @JsonFormat(pattern = "dd/MM/yyyy")
-   private LocalDate dataNascimento;
+    @Column(nullable = false)
+    private String rg;
 
-   @Column
-   private String foneCelular;
+    @Column
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
 
-   @Column
-   private String foneFixo;
+    @Column
+    private String foneCelular;
 
-   @Column
-   private Integer qtEntregasRealizadas;
+    @Column
+    private String foneFixo;
 
-   @Column
-   private String valorFrete;
+    @Column
+    private Integer qtEntregasRealizadas;
 
-   @Column
-   private String enderecoRua;
+    @Column
+    private Double valorFrete;  // Corrigido para Double ou BigDecimal, dependendo do caso.
 
-   @Column
-   private String enderecoCompleto;
+    @Column
+    private String enderecoRua;
 
-   @Column
-   private String enderecoNumero;
+    @Column
+    private String enderecoCompleto;
 
-   @Column
-   private String enderecoBairro;
+    @Column
+    private String enderecoNumero;
 
-   @Column
-   private String enderecoCidade;
+    @Column
+    private String enderecoBairro;
 
-   @Column
-   private String enderecoCep;
+    @Column
+    private String enderecoCidade;
 
-   @Column
-   private String enderecoUf;
+    @Column
+    private String enderecoCep;
 
-   @Column
-   private Boolean ativo;
+    @Column
+    private String enderecoUf;
 
+    @Column(nullable = false)
+    private Boolean ativo;  // Assumindo que "ativo" é um campo obrigatório
 }
-// corrigir
